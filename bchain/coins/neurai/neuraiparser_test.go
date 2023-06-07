@@ -55,7 +55,7 @@ func Test_GetAddrDescFromAddress_Mainnet(t *testing.T) {
 			wantErr: false,
 		},
 	}
-	parser := NewNeuraicoinParser(GetChainParams("main"), &btc.Configuration{})
+	parser := NewNeuraiParser(GetChainParams("main"), &btc.Configuration{})
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
