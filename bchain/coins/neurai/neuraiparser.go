@@ -9,8 +9,8 @@ import (
 
 // magic numbers
 const (
-	MainnetMagic wire.BitcoinNet = 0x4e564152
-	TestnetMagic wire.BitcoinNet = 0x544e5652
+	MainnetMagic wire.BitcoinNet = 0x5255454e
+	TestnetMagic wire.BitcoinNet = 0x4e455552
 )
 
 // chain parameters
@@ -22,12 +22,12 @@ var (
 func init() {
 	MainNetParams = chaincfg.MainNetParams
 	MainNetParams.Net = MainnetMagic
-	MainNetParams.PubKeyHashAddrID = []byte{60}
-	MainNetParams.ScriptHashAddrID = []byte{122}
+	MainNetParams.PubKeyHashAddrID = []byte{53}
+	MainNetParams.ScriptHashAddrID = []byte{117}
 
 	TestNetParams = chaincfg.TestNet3Params
 	TestNetParams.Net = TestnetMagic
-	TestNetParams.PubKeyHashAddrID = []byte{111}
+	TestNetParams.PubKeyHashAddrID = []byte{127}
 	TestNetParams.ScriptHashAddrID = []byte{196}
 }
 
