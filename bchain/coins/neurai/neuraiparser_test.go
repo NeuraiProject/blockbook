@@ -33,13 +33,13 @@ func Test_GetAddrDescFromAddress_Mainnet(t *testing.T) {
 		{
 			name:    "P2PKH1",
 			args:    args{address: "NTztjwg8MeMKMUm3tTZufpVWQaZ3tLmE7z"},
-			want:    "35c481168a92976c741961850ba832ad968d40cae9055bdb3d",
+			want:    "76a91458af6023af472f2b833fb92177a64ef0473f61b288ac",
 			wantErr: false,
 		},
 		{
 			name:    "P2PKH2",
 			args:    args{address: "NdpzGYqnk8Hc3yvRzUC8WdiDD8RsBbsYdA"},
-			want:    "35c481168a92976c741961850ba832ad968d40cae9055bdb3d",
+			want:    "76a914c481168a92976c741961850ba832ad968d40cae988ac,",
 			wantErr: false,
 		},
 	}
