@@ -6,7 +6,7 @@
     "alias": "neurai"
   },
   "ports": {
-    "backend_rpc": 9068,
+    "backend_rpc": 8068,
     "backend_message_queue": 38368,
     "blockbook_internal": 9068,
     "blockbook_public" : 9168
