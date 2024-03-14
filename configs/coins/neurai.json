@@ -19,9 +19,9 @@
     "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
   },
   "backend": {
-    "package_name": "backend-neurai-HW",
-    "package_revision": "neurai-dev-HW",
-    "system_user": "neurai-HW",
+    "package_name": "backend-neuraiHW",
+    "package_revision": "neurai-devHW",
+    "system_user": "neuraiHW",
     "version": "1.0.4.0",
     "binary_url": "https://github.com/NeuraiProject/Neurai/releases/download/1.0.4/neurai-1.0.4.0.WITH.NEW.DERIVATION.-x86_64-linux-gnu.tar.gz",
     "verification_type": "sha256",
@@ -44,8 +44,8 @@
     }
   },
   "blockbook": {
-    "package_name": "blockbook-neurai-HW",
-    "system_user": "blockbook-neurai-HW",
+    "package_name": "blockbook-neuraiHW",
+    "system_user": "blockbook-neuraiHW",
     "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
     "public_binding_template": ":{{.Ports.BlockbookPublic}}",
     "explorer_url": "",
