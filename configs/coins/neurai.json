@@ -25,7 +25,7 @@
     "version": "1.0.4.0",
     "binary_url": "https://github.com/NeuraiProject/Neurai/releases/download/1.0.4/neurai-1.0.4.0.WITH.NEW.DERIVATION.-x86_64-linux-gnu.tar.gz",
     "verification_type": "sha256",
-    "verification_source": "1c35ad5817abbddca719e7e7b12c50b4f525c893981134c5d3cfd60123ca493d",
+    "verification_source": "ea2577c3038e740e264b7df1daf43195fee29b2baacb1ec865ee37a925dd60fb",
     "extract_command": "tar -C backend --strip 1 -xf",
     "exclude_files": [
       "neurai-qt"
