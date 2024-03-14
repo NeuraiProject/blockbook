@@ -20,7 +20,7 @@
   },
   "backend": {
     "package_name": "backend-neurai-hw",
-    "package_revision": "neurai-dev-hw",
+    "package_revision": "neurai-dev",
     "system_user": "neurai",
     "version": "1.0.4.0",
     "binary_url": "https://github.com/NeuraiProject/Neurai/releases/download/1.0.4/neurai-1.0.4.0.WITH.NEW.DERIVATION.-x86_64-linux-gnu.tar.gz",
