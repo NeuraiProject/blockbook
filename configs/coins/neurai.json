@@ -1,9 +1,9 @@
 {
   "coin": {
-    "name": "Neurai-HW",
+    "name": "NeuraiHW",
     "shortcut": "XNA",
-    "label": "Neurai-HW",
-    "alias": "neurai-HW"
+    "label": "NeuraiHW",
+    "alias": "neuraiHW"
   },
   "ports": {
     "backend_rpc": 8069,
