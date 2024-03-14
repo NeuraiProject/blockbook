@@ -1,9 +1,9 @@
 {
   "coin": {
-    "name": "NeuraiHW",
+    "name": "Neurai-hw",
     "shortcut": "XNA",
-    "label": "NeuraiHW",
-    "alias": "neuraiHW"
+    "label": "Neurai-hw",
+    "alias": "neurai-hw"
   },
   "ports": {
     "backend_rpc": 8069,
@@ -19,9 +19,9 @@
     "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
   },
   "backend": {
-    "package_name": "backend-neuraiHW",
-    "package_revision": "neurai-devHW",
-    "system_user": "neuraiHW",
+    "package_name": "backend-neurai-hw",
+    "package_revision": "neurai-dev-hw",
+    "system_user": "neurai-hw",
     "version": "1.0.4.0",
     "binary_url": "https://github.com/NeuraiProject/Neurai/releases/download/1.0.4/neurai-1.0.4.0.WITH.NEW.DERIVATION.-x86_64-linux-gnu.tar.gz",
     "verification_type": "sha256",
@@ -44,8 +44,8 @@
     }
   },
   "blockbook": {
-    "package_name": "blockbook-neuraiHW",
-    "system_user": "blockbook-neuraiHW",
+    "package_name": "blockbook-neurai-hw",
+    "system_user": "blockbook-neurai-hw",
     "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
     "public_binding_template": ":{{.Ports.BlockbookPublic}}",
     "explorer_url": "",
