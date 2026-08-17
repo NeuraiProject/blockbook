@@ -1,0 +1,15 @@
+# Optional overlay: accept inbound P2P connections on the node.
+#
+# Enable it by adding this line to .env (or export it):
+#   COMPOSE_FILE=docker-compose.yml:docker-compose.p2p.yml
+# or explicitly:
+#   docker compose -f docker-compose.yml -f docker-compose.p2p.yml up -d
+#
+# Not enabled by default because port 19000 is often already taken by another
+# neuraid on the same host, and an explorer backend works fine outbound-only.
+services:
+  backend-neurai:
+    environment:
+      P2P_LISTEN: "1"
+    ports:
+      - "${BACKEND_P2P_PORT:-19000}:19000"

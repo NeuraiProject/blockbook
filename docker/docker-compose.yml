@@ -36,15 +36,14 @@ services:
       RPC_ALLOW_IP: ${BACKEND_RPC_ALLOW_IP:-172.16.0.0/12 192.168.0.0/16 10.0.0.0/8}
       RPC_USER: ${NEURAI_RPC_USER:-}
       RPC_PASS: ${NEURAI_RPC_PASS:-}
-      P2P_LISTEN: ${BACKEND_P2P_LISTEN:-0}
+      P2P_LISTEN: "0"   # set to "1" by docker-compose.p2p.yml
       NEURAID_EXTRA_ARGS: ${NEURAID_EXTRA_ARGS:-}
     volumes:
       # Named volume by default; set BACKEND_DATA=/abs/path (or ./rel/path) for a bind mount.
       - ${BACKEND_DATA:-backend-data}:/opt/coins/data/neurai/backend
-    ports:
-      # P2P — only used when BACKEND_P2P_LISTEN=1 (outbound-only by default, like the .deb).
-      - "${BACKEND_P2P_PORT:-19000}:19000"
-      # RPC (8069) and ZMQ (38369) are intentionally NOT published.
+    # No ports are published: RPC (8069) and ZMQ (38369) stay inside the compose
+    # network and the node is outbound-only (like the .deb). To accept inbound
+    # P2P on 19000 add the overlay: COMPOSE_FILE=docker-compose.yml:docker-compose.p2p.yml
     ulimits:
       nofile:
         soft: 65536

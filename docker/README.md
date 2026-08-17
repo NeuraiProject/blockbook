@@ -8,7 +8,7 @@ repository produces (`make deb-neurai`).
 
 ```
                  ┌──────────────────────────┐   RPC 8069 / ZMQ 38369   ┌──────────────────────────┐
-  :19000 (opt) ─▶│  backend-neurai (neuraid) │◀────── compose network ──│  blockbook-neurai         │◀── :9169 public API/explorer
+  (no ports)     │  backend-neurai (neuraid) │◀────── compose network ──│  blockbook-neurai         │◀── :9169 public API/explorer
                  │  vol: backend-data        │                          │  vol: blockbook-data      │◀── 127.0.0.1:9069 metrics
                  └──────────────────────────┘                          └──────────────────────────┘
 ```
@@ -31,6 +31,11 @@ docker compose logs -f              # follow both
 
 Blockbook is started only after the node answers RPC (`depends_on: service_healthy`).
 Both services restart automatically (`unless-stopped`).
+
+The node publishes **no host port** (outbound-only, RPC/ZMQ stay on the compose
+network), so the stack can run next to an existing `neuraid` on the same
+server. To accept inbound P2P connections add the overlay
+[`docker-compose.p2p.yml`](docker-compose.p2p.yml) (see Configuration).
 
 ## Where do the packages come from?
 
@@ -73,7 +78,7 @@ default, so `.env` is optional. Most relevant knobs:
 | `BLOCKBOOK_EXPLORER_URL` | *(empty)* | Public URL used in links |
 | `BLOCKBOOK_DBCACHE` / `BLOCKBOOK_WORKERS` | `536870912` / `8` | RocksDB cache (bytes) / initial-sync workers |
 | `BLOCKBOOK_EXTRA_ARGS` | *(empty)* | Extra `blockbook` flags |
-| `BACKEND_P2P_LISTEN` | `0` | `1` = accept inbound P2P on `BACKEND_P2P_PORT` (19000) |
+| `COMPOSE_FILE` | `docker-compose.yml` | Set to `docker-compose.yml:docker-compose.p2p.yml` to accept inbound P2P on `BACKEND_P2P_PORT` (19000). Off by default: no host port is taken, safe next to another neuraid |
 | `BACKEND_RPC_ALLOW_IP` | RFC-1918 ranges | Subnets allowed to call the node RPC (RPC/ZMQ are never published to the host) |
 | `NEURAI_RPC_USER` / `NEURAI_RPC_PASS` | from the .deb (`rpc`/`rpc`) | Shared by both containers |
 | `NEURAID_EXTRA_ARGS` | *(empty)* | Extra `neuraid` flags (`-dbcache=2000 …`) |
@@ -139,6 +144,6 @@ prefer blockbook to speak TLS itself, set `BLOCKBOOK_CERTFILE` and mount
 | One `ubuntu:22.04` container running `neuraid` (daemonised) **and** blockbook from a shell script | Two `debian:12-slim` images, one process each — the 0.6.0 binaries are built on debian 12 (glibc 2.36) and **do not run on ubuntu 22.04** |
 | Hard-coded old versions (backend 1.0.2, blockbook 0.4.0) | Versions are build args; local `.deb` drop-in or GitHub release |
 | Both daemons as root, no healthchecks, no restart policy | Unprivileged users, healthchecks, `depends_on: service_healthy`, `restart: unless-stopped`, long stop grace period, `ulimits`, log rotation |
-| RPC/ZMQ bound to `127.0.0.1` inside one container | RPC/ZMQ bound only on the compose network; nothing but `:9169` (and loopback `:9069`) is published |
+| RPC/ZMQ bound to `127.0.0.1` inside one container | RPC/ZMQ bound only on the compose network; nothing but `:9169` (and loopback `:9069`) is published — inbound P2P is an opt-in overlay |
 | Manual `docker run -v blockbook:/data …` | Named volumes (or bind mounts) per service, `.env`-driven config, `neurai-cli` helper |
 | Logs to files inside the container | Logs to `docker logs`, json-file driver capped at 5 × 50 MB |
