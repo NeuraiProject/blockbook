@@ -89,9 +89,11 @@ services:
     volumes:
       - ${BLOCKBOOK_DATA:-blockbook-data}:/opt/coins/data/neurai/blockbook
     ports:
-      # Public explorer / REST / WebSocket API
-      - "${BLOCKBOOK_PUBLIC_PORT:-9169}:9169"
-      # Internal status page + Prometheus /metrics — loopback only
+      # Public explorer / REST / WebSocket API. Bound to loopback by default so it is
+      # only reachable through a reverse proxy (nginx/caddy) on the same host.
+      # Set BLOCKBOOK_PUBLIC_BIND=0.0.0.0 to expose it directly.
+      - "${BLOCKBOOK_PUBLIC_BIND:-127.0.0.1}:${BLOCKBOOK_PUBLIC_PORT:-9169}:9169"
+      # Internal status page + Prometheus /metrics — always loopback only
       - "127.0.0.1:${BLOCKBOOK_INTERNAL_PORT:-9069}:9069"
     ulimits:
       nofile:
