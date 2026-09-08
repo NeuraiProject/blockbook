@@ -83,7 +83,7 @@ default, so `.env` is optional. Most relevant knobs:
 | `BLOCKBOOK_CERTFILE` | *(empty → HTTP)* | Set to `/opt/coins/blockbook/neurai/cert/blockbook` for the self-signed TLS cert shipped in the .deb, or mount your own `<path>.crt/.key` |
 | `BLOCKBOOK_EXPLORER_URL` | *(empty)* | Public URL used in links |
 | `BLOCKBOOK_DBCACHE` / `BLOCKBOOK_WORKERS` | `536870912` / `8` | RocksDB cache (bytes) / initial-sync workers |
-| `BLOCKBOOK_EXTRA_ARGS` | *(empty)* | Extra `blockbook` flags |
+| `BLOCKBOOK_EXTRA_ARGS` | `-extendedindex` in `.env.example`, *(empty)* without a `.env` | Extra `blockbook` flags. `-extendedindex` must be set before the first sync — it is not retroactive and enabling it on an existing index reports every output as unspent (see `.env.example`) |
 | `COMPOSE_FILE` | `docker-compose.yml` | Set to `docker-compose.yml:docker-compose.p2p.yml` to accept inbound P2P on `BACKEND_P2P_PORT` (19000). Off by default: no host port is taken, safe next to another neuraid |
 | `BACKEND_RPC_ALLOW_IP` | RFC-1918 ranges | Subnets allowed to call the node RPC (RPC/ZMQ are never published to the host) |
 | `NEURAI_RPC_USER` / `NEURAI_RPC_PASS` | from the .deb (`rpc`/`rpc`) | Shared by both containers |
