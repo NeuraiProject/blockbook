@@ -24,3 +24,4 @@ static/api-docs/swagger-ui/
 configs/grafana/grafana.json
 docker/.env
 docker/debs/*.deb
+tmp/
